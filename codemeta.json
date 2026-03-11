@@ -1,0 +1,126 @@
+{
+    "@context": "https://doi.org/10.5063/schema/codemeta-2.0",
+    "@type": "SoftwareSourceCode",
+    "name": "codejson-crosswalk",
+    "description": "An NPM package that converts code.json to a variety of different metadata types in both directions",
+    "codeRepository": "https://github.com/DSACMS/codejson-crosswalk",
+    "issueTracker": "https://github.com/DSACMS/codejson-crosswalk/issues",
+    "license": "https://github.com/DSACMS/codejson-crosswalk/blob/main/LICENSE",
+    "versionControlSystem": "git",
+    "programmingLanguage": "TypeScript",
+    "runtimePlatform": [
+      "Windows",
+      "macOS",
+      "Linux"
+    ],
+    "applicationCategory": "Library",
+    "keywords": [
+      "codejson",
+      "converter",
+      "crosswalk",
+      "healthcare"
+    ],
+    "operatingSystem": [
+      "Windows",
+      "macOS",
+      "Linux"
+    ],
+    "developmentStatus": "Development",
+    "dateCreated": "2026-02-10T20:27:00Z",
+    "dateModified": "2026-02-19T21:33:44Z",
+    "softwareRequirements": "Node.js",
+    "audience": {
+      "@type": "Audience",
+      "audienceType": "government"
+    },
+    "maintainer": {
+      "@type": "Organization",
+      "name": "CMS Open Source Program Office",
+      "email": "opensource@cms.hhs.gov",
+      "parentOrganization": {
+        "@type": "Organization",
+        "name": "Centers for Medicare & Medicaid Services"
+      }
+    },
+    "producer": {
+      "@type": "Organization",
+      "name": "Centers for Medicare & Medicaid Services"
+    },
+    "provider": {
+      "@type": "Organization",
+      "name": "Centers for Medicare & Medicaid Services"
+    },
+    "isAccessibleForFree": true,
+    "additionalProperty": [
+      {
+        "@type": "PropertyValue",
+        "name": "repositoryVisibility",
+        "value": "public"
+      },
+      {
+        "@type": "PropertyValue",
+        "name": "repositoryType",
+        "value": "package"
+      },
+      {
+        "@type": "PropertyValue",
+        "name": "laborHours",
+        "value": 1477.85
+      },
+      {
+        "@type": "PropertyValue",
+        "name": "reuseFrequency.forks",
+        "value": 0
+      },
+      {
+        "@type": "PropertyValue",
+        "name": "reuseFrequency.clones",
+        "value": 0
+      },
+      {
+        "@type": "PropertyValue",
+        "name": "maintenance",
+        "value": "internal"
+      },
+      {
+        "@type": "PropertyValue",
+        "name": "SBOM",
+        "value": "https://github.com/DSACMS/codejson-crosswalk/network/dependencies"
+      },
+      {
+        "@type": "PropertyValue",
+        "name": "fismaLevel",
+        "value": "low"
+      },
+      {
+        "@type": "PropertyValue",
+        "name": "group",
+        "value": "CMS/OA/DSAC"
+      },
+      {
+        "@type": "PropertyValue",
+        "name": "subsetInHealthcare",
+        "value": "operational"
+      },
+      {
+        "@type": "PropertyValue",
+        "name": "AIUseCaseID",
+        "value": "0"
+      },
+      {
+        "@type": "PropertyValue",
+        "name": "maturityModelTier",
+        "value": 3
+      },
+      {
+        "@type": "PropertyValue",
+        "name": "localisation",
+        "value": false
+      },
+      {
+        "@type": "PropertyValue",
+        "name": "userInput",
+        "value": true
+      }
+    ]
+  }

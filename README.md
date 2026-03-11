@@ -1,26 +1,10 @@
-# {{ cookiecutter.project_name }}
+# codejson-crosswalk
 
-{{ cookiecutter.project_description }}
+A TypeScript npm package for bidirectional conversion between code.json and other metadata formats
 
 ## About the Project
 
-**{project statement}**
-
-<!---
-### Project Vision
-**{project vision}** -->
-
-<!--
-### Project Mission
-**{project mission}** -->
-
-<!--
-### Agency Mission
-TODO: Good to include since this is an agency-led project -->
-
-<!--
-### Team Mission
-TODO: Good to include since this is an agency-led project -->
+There is no automated bridge between code.json and other software metadata formats. This package provides a single function call to convert between code.json and codemeta.json (and future formats), with code.json at the center of a hub-and-spoke architecture.
 
 ## Core Team
 
@@ -28,18 +12,24 @@ A list of core team members responsible for the code and documentation in this r
 
 ## Repository Structure
 
-<!-- TODO: Including the repository structure helps viewers quickly understand the project layout. Using the "tree -d" command can be a helpful way to generate this information, but, be sure to update it as the project evolves and changes over time. -->
-
 ```plaintext
 .
+├── src/
+│   ├── helpers/
+│   │   ├── convert.ts                # Generic conversion engine
+│   │   ├── handle-nested-values.ts   # Utilities for reading/writing nested object paths
+│   │   └── README.md                 # Documentation for the engine and helpers
+│   ├── metadata/
+│   │   └── codemeta/
+│   │       ├── codejson-mapping.ts   # code.json → codemeta mapping definitions
+│   │       ├── codemeta-mapping.ts   # codemeta → code.json mapping definitions
+│   │       ├── handler.ts            # Coordinator functions for codemeta conversions
+│   │       └── README.md             # Documentation for mapping files
+│   ├── types/
+│   │   └── MappingEntry.ts           # Shared MappingEntry type definition
+│   └── index.ts                      # Package entry point and public API
+├── .github/                          # GitHub Actions workflows
 ```
-
-
-**{list directories and descriptions}**
-
-<!-- TODO: Add a 'table of contents" for your documentation. Tier 0/1 projects with simple README.md files without many sections may or may not need this, but it is still extremely helpful to provide "bookmark" or "anchor" links to specific sections of your file to be referenced in tickets, docs, or other communication channels. -->
-
-**{list of .md at top directory and descriptions}**
 
 # Development and Software Delivery Lifecycle
 
@@ -47,9 +37,15 @@ The following guide is for members of the project team who have access to the re
 
 ## Local Development
 
-<!--- TODO - with example below:
-This project is monorepo with several apps. Please see the [api](./api/README.md) and [frontend](./frontend/README.md) READMEs for information on spinning up those projects locally. Also see the project [documentation](./documentation) for more info.
--->
+This project uses [Bun](https://bun.sh/) as its runtime and package manager.
+
+```bash
+# Install dependencies
+bun install
+
+# Run tests
+bun test
+```
 
 ## Coding Style and Linters
 
@@ -59,7 +55,6 @@ Each application has its own linting and testing guidelines. Lint and code tests
 
 ## Branching Model
 
-<!--- TODO - with example below:
 This project follows [trunk-based development](https://trunkbaseddevelopment.com/), which means:
 
 * Make small changes in [short-lived feature branches](https://trunkbaseddevelopment.com/short-lived-feature-branches/) and merge to `main` frequently.
@@ -79,7 +74,7 @@ Thank you for considering contributing to an Open Source project of the US Gover
 
 ## Community
 
-The {{ cookiecutter.project_name }} team is taking a community-first and open source approach to the product development of this tool. We believe government software should be made in the open and be built and licensed such that anyone can download the code, run it themselves without paying money to third parties or using proprietary software, and use it as they will.
+The codejson-crosswalk team is taking a community-first and open source approach to the product development of this tool. We believe government software should be made in the open and be built and licensed such that anyone can download the code, run it themselves without paying money to third parties or using proprietary software, and use it as they will.
 
 We know that we can learn from a wide variety of communities, including those who will use or will be impacted by the tool, who are experts in technology, or who have experience with similar technologies deployed in other spaces. We are dedicated to creating forums for continuous conversation and feedback to help shape the design and development of the tool.
 
@@ -87,21 +82,11 @@ We also recognize capacity building as a key part of involving a diverse open so
 
 ### Community Guidelines
 
-Principles and guidelines for participating in our open source community are can be found in [COMMUNITY.md](COMMUNITY.md). Please read them before joining or starting a conversation in this repo or one of the channels listed below. All community members and participants are expected to adhere to the community guidelines and code of conduct when participating in community spaces including: code repositories, communication channels and venues, and events.
-
-<!--
-## Governance
-Information about how the {{ cookiecutter.project_name }} community is governed may be found in [GOVERNANCE.md](GOVERNANCE.md).
--->
+Principles and guidelines for participating in our open source community can be found in [COMMUNITY.md](COMMUNITY.md). Please read them before joining or starting a conversation in this repo or one of the channels listed below. All community members and participants are expected to adhere to the community guidelines and code of conduct when participating in community spaces including: code repositories, communication channels and venues, and events.
 
 ## Feedback
 
-If you have ideas for how we can improve or add to our capacity building efforts and methods for welcoming people into our community, please let us know at **{contact email}**. If you would like to comment on the tool itself, please let us know by filing an **issue on our GitHub repository.**
-
-<!--
-## Glossary
-Information about terminology and acronyms used in this documentation may be found in [GLOSSARY.md](GLOSSARY.md).
--->
+If you have ideas for how we can improve or add to our capacity building efforts and methods for welcoming people into our community, please let us know at opensource@cms.hhs.gov. If you would like to comment on the tool itself, please let us know by filing an **issue on our GitHub repository.**
 
 ## Policies
 
@@ -121,7 +106,7 @@ For more information about our Security, Vulnerability, and Responsible Disclosu
 
 A Software Bill of Materials (SBOM) is a formal record containing the details and supply chain relationships of various components used in building software.
 
-In the spirit of [Executive Order 14028 - Improving the Nation’s Cyber Security](https://www.gsa.gov/technology/it-contract-vehicles-and-purchasing-programs/information-technology-category/it-security/executive-order-14028), a SBOM for this repository is provided here: https://github.com/{{ cookiecutter.project_org }}/{{ cookiecutter.project_repo_name }}/network/dependencies.
+In the spirit of [Executive Order 14028 - Improving the Nation's Cyber Security](https://www.gsa.gov/technology/it-contract-vehicles-and-purchasing-programs/information-technology-category/it-security/executive-order-14028), a SBOM for this repository is provided here: https://github.com/DSACMS/codejson-crosswalk/network/dependencies.
 
 For more information and resources about SBOMs, visit: https://www.cisa.gov/sbom.
 
