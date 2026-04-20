@@ -31,14 +31,3 @@ export async function fromCodejsonToCodemeta(input: string | Record<string, unkn
 
     return result
   }
-
-
-let codemetaPath = "codemeta.json"
-let codemetaOutput = await fromCodemetaToCodejson(codemetaPath)
-
-let codejsonPath = "code.json"
-let codejsonOutput = await fromCodejsonToCodemeta(codejsonPath)
-
-console.log(codemetaOutput)
-console.log("-------------------------------------------------")
-console.log(codejsonOutput)
