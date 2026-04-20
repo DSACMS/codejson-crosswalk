@@ -122,7 +122,7 @@ export const codemetaToCodeJsonMapping: MappingEntry[] = [
 * code.json expects full datetime format.
 */
 function transformDate(value: unknown): string {
-if (typeof value !== "string") return ""
-if (value.includes("T")) return value
-return `${value}T00:00:00Z`
+  if (typeof value !== "string") return ""
+  if (value.includes("T")) return value
+  return `${value}T00:00:00Z`
 }
