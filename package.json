@@ -2,10 +2,25 @@
   "name": "codejson-crosswalk",
   "module": "src/index.ts",
   "type": "module",
+  "main": "./dist/index.js",
+  "exports": {
+    ".": "./dist/index.js"
+  },
+  "bin": {
+    "codejson-crosswalk": "./dist/cli.js"
+  },
+  "scripts": {
+    "build": "bun build src/index.ts src/cli.ts --outdir dist --target node",
+    "prepublishOnly": "bun run build"
+  },
+  "files": ["dist"],
   "devDependencies": {
     "@types/bun": "latest"
   },
   "peerDependencies": {
     "typescript": "^5"
+  },
+  "dependencies": {
+    "zod": "^4.3.6"
   }
 }
