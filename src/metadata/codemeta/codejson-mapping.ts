@@ -62,66 +62,6 @@ export const codejsonToCodemetaMapping: MappingEntry[] = [
 
   { target: "@type",
     default: "SoftwareSourceCode" },
-
-  { target: "applicationCategory", 
-    default: "" },
-
-  { target: "applicationSubCategory", 
-    default: "" },
-
-  { target: "citation",
-    default: "" },
-
-  { target: "contributor",
-    default: [] },
-
-  { target: "copyrightHolder",
-    default: "" },
-
-  { target: "copyrightYear",
-    default: "" },
-
-  { target: "datePublished",
-    default: "" },
-
-  { target: "editor",
-    default: "" },
-
-  { target: "funder",
-    default: "" },
-
-  { target: "identifier",
-    default: "" },
-
-  { target: "isAccessibleForFree",
-    default: "" },
-
-  { target: "license", 
-    default: "" },
-
-  { target: "operatingSystem",
-    default: "" },
-
-  { target: "publisher",
-    default: "" },
-
-  { target: "relatedLink", 
-    default: "" },
-
-  { target: "releaseNotes", 
-    default: "" },
-
-  { target: "runtimePlatform", 
-    default: "" },
-
-  { target: "softwareRequirements", 
-    default: "" },
-
-  { target: "softwareVersion", 
-    default: "" },
-
-  { target: "sponsor", 
-    default: "" },
 ]
 
 // ─── Transform Helpers ────
