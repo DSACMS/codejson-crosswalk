@@ -1,4 +1,3 @@
-export { convert } from "./helpers/convert"
-export type { MappingEntry } from "./types/MappingEntry"
-export { codejsonToCodemetaMapping } from "./metadata/codemeta/codejson-mapping"
-export { codemetaToCodeJsonMapping } from "./metadata/codemeta/codemeta-mapping"
+export { codejsonToCodemetaMapping } from "./metadata/codemeta/codejson-to-codemeta"
+export { codemetaToCodeJsonMapping } from "./metadata/codemeta/codemeta-to-codejson"
+export { fromCodemetaToCodejson, fromCodejsonToCodemeta } from "./metadata/codemeta/handler"

@@ -1,5 +1,5 @@
-import { codemetaToCodeJsonMapping } from "./codemeta-mapping"
-import { codejsonToCodemetaMapping } from "./codejson-mapping"
+import { codemetaToCodeJsonMapping } from "./codemeta-to-codejson"
+import { codejsonToCodemetaMapping } from "./codejson-to-codemeta"
 import { convert } from "../../helpers/convert"
 
 export async function fromCodemetaToCodejson(input: string | Record<string, unknown>): Promise<Record<string, unknown>> {
