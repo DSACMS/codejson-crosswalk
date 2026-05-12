@@ -4,11 +4,27 @@ A TypeScript npm package for bidirectional conversion between code.json and othe
 
 ## About the Project
 
-There is no automated bridge between code.json and other software metadata formats. This package provides a single function call to convert between code.json and codemeta.json (and future formats), with code.json at the center of a hub-and-spoke architecture.
+There is no automated bridge between code.json and other software metadata formats. This package provides a single function call to convert between code.json and other formats, with code.json at the center of a hub-and-spoke architecture.
+
+### Project Vision
+
+A world where government open source software metadata is interoperable across standards, where a single source of truth in code.json can seamlessly power any downstream metadata consumer, and where federal agencies can meet open source compliance requirements without duplicating manual effort.
+
+### Project Mission
+
+To provide a reliable, well-tested, and extensible conversion library that bridges code.json with other software metadata formats, reducing the friction of open source compliance for CMS and the broader federal open source community.
+
+### Agency Mission
+
+The Centers for Medicare & Medicaid Services (CMS) is committed to building and maintaining high-quality, open, and reusable software. CMS's Open Source Program Office (OSPO) promotes transparency, collaboration, and code reuse across the agency and the federal government in accordance with the [CMS Open Source Policy](https://github.com/CMSGov/cms-open-source-policy).
+
+### Team Mission
+
+The DSACMS team builds open source tooling and infrastructure that makes it easier for CMS engineering teams to meet federal open source obligations. The codejson-crosswalk project is part of that effort — reducing manual work, preventing metadata drift, and enabling interoperability across the federal open source ecosystem.
 
 ## Core Team
 
-A list of core team members responsible for the code and documentation in this repository can be found in [COMMUNITY.md](COMMUNITY.md).
+A list of core team members responsible for the code and documentation in this repository can be found in [COMMUNITY.md](COMMUNITY.md). 
 
 ## Repository Structure
 
@@ -21,14 +37,24 @@ A list of core team members responsible for the code and documentation in this r
 │   │   └── README.md                 # Documentation for the engine and helpers
 │   ├── metadata/
 │   │   └── codemeta/
-│   │       ├── codejson-mapping.ts   # code.json → codemeta mapping definitions
-│   │       ├── codemeta-mapping.ts   # codemeta → code.json mapping definitions
-│   │       ├── handler.ts            # Coordinator functions for codemeta conversions
-│   │       └── README.md             # Documentation for mapping files
+│   │       ├── codejson-to-codemeta.ts  # code.json → codemeta mapping definitions
+│   │       ├── codemeta-to-codejson.ts  # codemeta → code.json mapping definitions
+│   │       ├── handler.ts               # Coordinator functions for codemeta conversions
+│   │       └── README.md                # Documentation for mapping files
 │   ├── types/
 │   │   └── MappingEntry.ts           # Shared MappingEntry type definition
+│   ├── cli.ts                        # CLI entry point
+│   ├── cli-helpers.ts                # CLI argument parsing and I/O helpers
 │   └── index.ts                      # Package entry point and public API
+├── src/tests/
+│   ├── convert.test.ts               # Unit tests for the conversion engine
+│   └── handle-nested-values.test.ts  # Unit tests for nested value helpers
 ├── .github/                          # GitHub Actions workflows
+├── COMMUNITY.md
+├── CONTRIBUTING.md
+├── CODE_OF_CONDUCT.md
+├── SECURITY.md
+└── README.md
 ```
 
 # Development and Software Delivery Lifecycle
@@ -40,18 +66,54 @@ The following guide is for members of the project team who have access to the re
 This project uses [Bun](https://bun.sh/) as its runtime and package manager.
 
 ```bash
+# Install Bun (if not already installed)
+curl -fsSL https://bun.sh/install | bash
+
 # Install dependencies
 bun install
 
 # Run tests
 bun test
+
+# Run the CLI locally
+bun run src/cli.ts code.json --to codemeta
+
+# Build the package
+bun build src/index.ts --outdir dist
+```
+
+**Stdin/stdout usage:**
+
+```bash
+# Convert code.json → codemeta.json
+bun run src/cli.ts code.json --to codemeta --out codemeta.json
+
+# Pipe from stdin
+cat code.json | bun run src/cli.ts --to codemeta > codemeta.json
+
+# Convert codemeta.json → code.json
+bun run src/cli.ts codemeta.json --to codejson
 ```
 
 ## Coding Style and Linters
 
-<!-- TODO - Add the repo's linting and code style guidelines -->
+This project uses TypeScript with strict type checking. All code must pass the TypeScript compiler before being committed.
 
-Each application has its own linting and testing guidelines. Lint and code tests are run on each commit, so linters and tests should be run locally before committing.
+```bash
+# Type-check the project
+bun tsc --noEmit
+
+# Run all tests
+bun test
+```
+
+Style conventions:
+- TypeScript strict mode is enabled
+- All public functions must have JSDoc comments
+- Transform functions accept `unknown` and return typed values — never bypass the type guard pattern
+- No `any` types
+
+Lint and type checks are run on each commit via GitHub Actions; run them locally before pushing.
 
 ## Branching Model
 
@@ -61,12 +123,11 @@ This project follows [trunk-based development](https://trunkbaseddevelopment.com
 * Be open to submitting multiple small pull requests for a single ticket (i.e. reference the same ticket across multiple pull requests).
 * Treat each change you merge to `main` as immediately deployable to production. Do not merge changes that depend on subsequent changes you plan to make, even if you plan to make those changes shortly.
 * Ticket any unfinished or partially finished work.
-* Tests should be written for changes introduced, and adhere to the text percentage threshold determined by the project.
+* Tests should be written for changes introduced, and adhere to the coverage threshold determined by the project.
 
-This project uses **continuous deployment** using [Github Actions](https://github.com/features/actions) which is configured in the [./github/workflows](.github/workflows) directory.
+This project uses **continuous deployment** using [Github Actions](https://github.com/features/actions) which is configured in the [.github/workflows](.github/workflows) directory.
 
 Pull-requests are merged to `main` and the changes are immediately deployed to the development environment. Releases are created to push changes to production.
--->
 
 ## Contributing
 
