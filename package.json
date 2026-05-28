@@ -11,11 +11,13 @@
   },
   "scripts": {
     "build": "bun build src/index.ts src/cli.ts --outdir dist --target node",
+    "docs": "typedoc",
     "prepublishOnly": "bun run build"
   },
   "files": ["dist"],
   "devDependencies": {
-    "@types/bun": "latest"
+    "@types/bun": "latest",
+    "typedoc": "^0.28.19"
   },
   "peerDependencies": {
     "typescript": "^5"

@@ -1,0 +1,12 @@
+{
+  "entryPoints": ["src/index.ts"],
+  "out": "docs",
+  "name": "codejson-crosswalk",
+  "includeVersion": true,
+  "readme": "README.md",
+  "skipErrorChecking": true,
+  "categorizeByGroup": true,
+  "navigationLinks": {
+    "GitHub": "https://github.com/DSACMS/codejson-crosswalk"
+  }
+}
