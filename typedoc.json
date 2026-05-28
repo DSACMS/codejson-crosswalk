@@ -3,7 +3,7 @@
   "out": "docs",
   "name": "codejson-crosswalk",
   "includeVersion": true,
-  "readme": "README.md",
+  "readme": "none",
   "skipErrorChecking": true,
   "categorizeByGroup": true,
   "navigationLinks": {
