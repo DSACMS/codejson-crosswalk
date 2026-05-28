@@ -1,0 +1,27 @@
+{
+  "name": "roundtrip-test",
+  "description": "Testing round-trips",
+  "status": "Production",
+  "permissions": {
+    "licenses": [{ "name": "MIT", "URL": "https://spdx.org/licenses/MIT" }],
+    "usageType": ["openSource"]
+  },
+  "organization": "Example Org",
+  "repositoryURL": "https://github.com/example/roundtrip-test",
+  "repositoryVisibility": "private",
+  "vcs": "git",
+  "laborHours": 100,
+  "reuseFrequency": { "forks": 3 },
+  "languages": ["TypeScript", "JavaScript"],
+  "maintenance": "internal",
+  "contractNumber": ["CTR-2024-001"],
+  "SBOM": "https://example.com/sbom.json",
+  "date": {
+    "created": "2024-01-15T00:00:00Z",
+    "lastModified": "2024-06-30T00:00:00Z"
+  },
+  "tags": ["testing", "roundtrip"],
+  "contact": { "name": "Jane Doe", "email": "jane@example.com" },
+  "feedbackMechanism": "https://github.com/example/roundtrip-test/issues",
+  "AIUseCaseID": "AI-001"
+}

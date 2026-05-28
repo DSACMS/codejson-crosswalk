@@ -1,0 +1,27 @@
+{
+  "@context": "https://doi.org/10.5063/schema/codemeta-2.0",
+  "@type": "SoftwareSourceCode",
+  "name": "sample-tool",
+  "description": "A sample open-source tool",
+  "codeRepository": "https://github.com/example/sample-tool",
+  "issueTracker": "https://github.com/example/sample-tool/issues",
+  "license": "https://spdx.org/licenses/MIT",
+  "author": {
+    "@type": "Person",
+    "givenName": "Alice",
+    "familyName": "Smith",
+    "email": "alice@example.com"
+  },
+  "programmingLanguage": ["Python", "JavaScript"],
+  "keywords": ["tool", "sample", "open-source"],
+  "dateCreated": "2024-01-01",
+  "dateModified": "2024-06-15",
+  "developmentStatus": "active",
+  "applicationCategory": "Research",
+  "softwareRequirements": "Python >= 3.9",
+  "maintainer": {
+    "@type": "Person",
+    "name": "Alice Smith",
+    "email": "alice@example.com"
+  }
+}

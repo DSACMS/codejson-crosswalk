@@ -1,0 +1,6 @@
+{
+  "@context": "https://w3id.org/codemeta/3.0",
+  "@type": "SoftwareSourceCode",
+  "name": "minimal-tool",
+  "description": "A tool with only the required codemeta fields populated"
+}
