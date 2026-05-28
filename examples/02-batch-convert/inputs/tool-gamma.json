@@ -1,0 +1,28 @@
+{
+  "name": "tool-gamma",
+  "description": "Gamma tool for user authentication",
+  "status": "Development",
+  "repositoryURL": "https://github.com/example-agency/tool-gamma",
+  "version": "0.2.0",
+  "permissions": {
+    "licenses": [{ "name": "CC0-1.0", "URL": "https://spdx.org/licenses/CC0-1.0" }],
+    "usageType": ["openSource"]
+  },
+  "contact": { "name": "Carol Wu", "email": "carol@example-agency.gov" },
+  "languages": ["TypeScript", "Rust"],
+  "tags": ["auth", "security"],
+  "date": {
+    "created": "2025-01-20T00:00:00Z",
+    "lastModified": "2025-11-01T00:00:00Z",
+    "metadataLastUpdated": "2025-11-01T00:00:00Z"
+  },
+  "organization": "Example Agency",
+  "repositoryVisibility": "public",
+  "vcs": "git",
+  "laborHours": 60,
+  "reuseFrequency": {},
+  "maintenance": "internal",
+  "contractNumber": [],
+  "SBOM": "None",
+  "AIUseCaseID": "0"
+}

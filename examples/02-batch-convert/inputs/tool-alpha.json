@@ -1,0 +1,28 @@
+{
+  "name": "tool-alpha",
+  "description": "Alpha tool for data ingestion",
+  "status": "Production",
+  "repositoryURL": "https://github.com/example-agency/tool-alpha",
+  "version": "1.0.0",
+  "permissions": {
+    "licenses": [{ "name": "Apache-2.0", "URL": "https://spdx.org/licenses/Apache-2.0" }],
+    "usageType": ["openSource"]
+  },
+  "contact": { "name": "Alice Johnson", "email": "alice@example-agency.gov" },
+  "languages": ["Go"],
+  "tags": ["ingestion", "pipeline"],
+  "date": {
+    "created": "2023-06-01T00:00:00Z",
+    "lastModified": "2025-09-10T00:00:00Z",
+    "metadataLastUpdated": "2025-09-10T00:00:00Z"
+  },
+  "organization": "Example Agency",
+  "repositoryVisibility": "public",
+  "vcs": "git",
+  "laborHours": 800,
+  "reuseFrequency": {},
+  "maintenance": "internal",
+  "contractNumber": [],
+  "SBOM": "None",
+  "AIUseCaseID": "0"
+}

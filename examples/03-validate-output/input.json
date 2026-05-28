@@ -1,0 +1,21 @@
+{
+  "@context": "https://w3id.org/codemeta/3.0",
+  "@type": "SoftwareSourceCode",
+  "name": "research-portal",
+  "description": "A portal for browsing and downloading public research datasets",
+  "codeRepository": "https://github.com/example-agency/research-portal",
+  "issueTracker": "https://github.com/example-agency/research-portal/issues",
+  "license": "https://spdx.org/licenses/Apache-2.0",
+  "version": "3.0.1",
+  "programmingLanguage": ["JavaScript", "Python"],
+  "keywords": ["research", "datasets", "portal", "open-data"],
+  "dateCreated": "2022-08-01",
+  "dateModified": "2025-10-15",
+  "developmentStatus": "active",
+  "author": {
+    "@type": "Person",
+    "givenName": "Dana",
+    "familyName": "Rivera",
+    "email": "dana.rivera@example-agency.gov"
+  }
+}

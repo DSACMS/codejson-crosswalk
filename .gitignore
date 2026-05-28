@@ -5,6 +5,7 @@ node_modules
 out
 dist
 docs
+examples/02-batch-convert/outputs
 *.tgz
 
 # code coverage

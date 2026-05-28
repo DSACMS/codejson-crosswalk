@@ -1,0 +1,28 @@
+{
+  "name": "tool-beta",
+  "description": "Beta tool for report generation",
+  "status": "Beta",
+  "repositoryURL": "https://github.com/example-agency/tool-beta",
+  "version": "0.9.0",
+  "permissions": {
+    "licenses": [{ "name": "MIT", "URL": "https://spdx.org/licenses/MIT" }],
+    "usageType": ["openSource"]
+  },
+  "contact": { "name": "Bob Lee", "email": "bob@example-agency.gov" },
+  "languages": ["Python"],
+  "tags": ["reporting", "pdf"],
+  "date": {
+    "created": "2024-03-12T00:00:00Z",
+    "lastModified": "2025-10-05T00:00:00Z",
+    "metadataLastUpdated": "2025-10-05T00:00:00Z"
+  },
+  "organization": "Example Agency",
+  "repositoryVisibility": "public",
+  "vcs": "git",
+  "laborHours": 150,
+  "reuseFrequency": {},
+  "maintenance": "internal",
+  "contractNumber": [],
+  "SBOM": "None",
+  "AIUseCaseID": "0"
+}
