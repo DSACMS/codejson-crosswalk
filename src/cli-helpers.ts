@@ -73,7 +73,7 @@ export async function readStdin(): Promise<string> {
 export function parseJSON(raw: string, source: string): Record<string, unknown> {
   try {
     return JSON.parse(raw) as Record<string, unknown>
-  } catch {
-    fatal(`${source} is not valid JSON.`)
+  } catch (err) {
+    fatal(`${source} is not valid JSON: ${(err as Error).message}`)
   }
 }

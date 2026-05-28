@@ -21,7 +21,12 @@ export function convert(
       const raw = getNestedValue(source, entry.source)
 
       if (raw !== undefined && raw !== null) {
-        const value = entry.transform ? entry.transform(raw) : raw
+        let value: unknown
+        try {
+          value = entry.transform ? entry.transform(raw) : raw
+        } catch (err) {
+          throw new Error(`Transform failed for field "${entry.target}": ${(err as Error).message}`)
+        }
         setNestedValue(target, entry.target, value)
       } else if (entry.default !== undefined) {
         setNestedValue(target, entry.target, entry.default)

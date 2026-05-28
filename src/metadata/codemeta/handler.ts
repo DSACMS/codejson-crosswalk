@@ -25,7 +25,14 @@ export async function fromCodemetaToCodejson(input: string | Record<string, unkn
   
     if (typeof input === "string") {
       const file = Bun.file(input)
-      source = await file.json()
+      try {
+        source = await file.json()
+      } catch (err) {
+        if (err instanceof SyntaxError) {
+          throw new Error(`"${input}" is not valid JSON: ${err.message}`)
+        }
+        throw new Error(`Cannot read file "${input}": ${(err as Error).message}`)
+      }
     } else {
       source = input
     }
@@ -58,8 +65,14 @@ export async function fromCodejsonToCodemeta(input: string | Record<string, unkn
   
     if (typeof input === "string") {
       const file = Bun.file(input)
-
-      source = await file.json()
+      try {
+        source = await file.json()
+      } catch (err) {
+        if (err instanceof SyntaxError) {
+          throw new Error(`"${input}" is not valid JSON: ${err.message}`)
+        }
+        throw new Error(`Cannot read file "${input}": ${(err as Error).message}`)
+      }
     } else {
       source = input
     }
