@@ -35,7 +35,7 @@ jobs:
         # bun test --coverage exits 1 in bun ≤ 1.x regardless of results (upstream bug),
         # so we capture the output and enforce the threshold ourselves.
         run: |
-          output=$(bun test --coverage 2>&1)
+          output=$(bun test --coverage 2>&1) || true  # bun --coverage always exits 1 (upstream bug)
           echo "$output"
           pct=$(echo "$output" | awk '/^All files/ {gsub(/%/,"",$6); print $6}')
           echo "Line coverage: ${pct}%"
