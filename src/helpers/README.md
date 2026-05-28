@@ -36,11 +36,11 @@ Each entry in a mapping array has the following shape:
 
 ```typescript
 type MappingEntry = {
-  source?: string                          // dot-notation path to read from the source object
-  target: string                           // dot-notation path to write to in the target object
-  transform?: (value: unknown) => unknown  // optional function to reshape the value
-  default?: unknown                        // fallback value when source is missing
-}
+  source?: string; // dot-notation path to read from the source object
+  target: string; // dot-notation path to write to in the target object
+  transform?: (value: unknown) => unknown; // optional function to reshape the value
+  default?: unknown; // fallback value when source is missing
+};
 ```
 
 Entries fall into three categories depending on which fields are present.
@@ -65,11 +65,11 @@ Here is a concrete example. Given this source object and the path `"date.created
 const source = {
   date: {
     created: "2024-06-15",
-    lastModified: "2025-02-20"
-  }
-}
+    lastModified: "2025-02-20",
+  },
+};
 
-getNestedValue(source, "date.created")
+getNestedValue(source, "date.created");
 ```
 
 The function splits `"date.created"` into `["date", "created"]`. It starts with a pointer to the top-level `source` object. On the first iteration, it reads `source["date"]` and moves the pointer to the inner object `{ created: "2024-06-15", lastModified: "2025-02-20" }`. On the second iteration, it reads `["created"]` from that inner object and gets `"2024-06-15"`. The loop ends and the function returns `"2024-06-15"`.
@@ -87,8 +87,8 @@ The key design detail is that the function loops through **all keys except the l
 Here is a concrete example. Given an empty target object and the path `"date.created"`:
 
 ```typescript
-const target = {}
-setNestedValue(target, "date.created", "2024-06-15T00:00:00Z")
+const target = {};
+setNestedValue(target, "date.created", "2024-06-15T00:00:00Z");
 ```
 
 The function splits the path into `["date", "created"]`. It loops through all keys except the last, so it only processes `"date"`. It checks whether `target["date"]` exists — it doesn't, so the function creates it as an empty object `{}`. The pointer moves into that new object. After the loop, the function writes the value at the last key: `target["date"]["created"] = "2024-06-15T00:00:00Z"`. The result is `{ date: { created: "2024-06-15T00:00:00Z" } }`.
@@ -114,29 +114,28 @@ The `convert` function ties everything together. It takes a source object and a 
 
 ```typescript
 function convert(source, mapping) {
-  const target = {}
+  const target = {};
 
   for (const entry of mapping) {
     if (entry.source) {
       // This entry reads from the source object
-      const raw = getNestedValue(source, entry.source)
+      const raw = getNestedValue(source, entry.source);
 
       if (raw !== undefined && raw !== null) {
         // Value exists — apply transform if present, then write
-        const value = entry.transform ? entry.transform(raw) : raw
-        setNestedValue(target, entry.target, value)
+        const value = entry.transform ? entry.transform(raw) : raw;
+        setNestedValue(target, entry.target, value);
       } else if (entry.default !== undefined) {
         // Value missing — write the default instead
-        setNestedValue(target, entry.target, entry.default)
+        setNestedValue(target, entry.target, entry.default);
       }
-
     } else if (entry.default !== undefined) {
       // No source path — this is a target-only default
-      setNestedValue(target, entry.target, entry.default)
+      setNestedValue(target, entry.target, entry.default);
     }
   }
 
-  return target
+  return target;
 }
 ```
 

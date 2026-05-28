@@ -1,5 +1,5 @@
-import type { MappingEntry } from "../types/MappingEntry"
-import { getNestedValue, setNestedValue } from "./handle-nested-values"
+import type { MappingEntry } from "../types/MappingEntry";
+import { getNestedValue, setNestedValue } from "./handle-nested-values";
 
 /**
  * Converts a source object to a target object using the provided mapping.
@@ -12,29 +12,31 @@ import { getNestedValue, setNestedValue } from "./handle-nested-values"
  */
 export function convert(
   source: Record<string, unknown>,
-  mapping: MappingEntry[]
+  mapping: MappingEntry[],
 ): Record<string, unknown> {
-  const target: Record<string, unknown> = {}
+  const target: Record<string, unknown> = {};
 
   for (const entry of mapping) {
     if (entry.source) {
-      const raw = getNestedValue(source, entry.source)
+      const raw = getNestedValue(source, entry.source);
 
       if (raw !== undefined && raw !== null) {
-        let value: unknown
+        let value: unknown;
         try {
-          value = entry.transform ? entry.transform(raw) : raw
+          value = entry.transform ? entry.transform(raw) : raw;
         } catch (err) {
-          throw new Error(`Transform failed for field "${entry.target}": ${(err as Error).message}`)
+          throw new Error(
+            `Transform failed for field "${entry.target}": ${(err as Error).message}`,
+          );
         }
-        setNestedValue(target, entry.target, value)
+        setNestedValue(target, entry.target, value);
       } else if (entry.default !== undefined) {
-        setNestedValue(target, entry.target, entry.default)
+        setNestedValue(target, entry.target, entry.default);
       }
     } else if (entry.default !== undefined) {
-      setNestedValue(target, entry.target, entry.default)
+      setNestedValue(target, entry.target, entry.default);
     }
   }
 
-  return target
+  return target;
 }

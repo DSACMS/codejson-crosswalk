@@ -1,6 +1,6 @@
-import { codemetaToCodeJsonMapping } from "./codemeta-to-codejson"
-import { codejsonToCodemetaMapping } from "./codejson-to-codemeta"
-import { convert } from "../../helpers/convert"
+import { codemetaToCodeJsonMapping } from "./codemeta-to-codejson";
+import { codejsonToCodemetaMapping } from "./codejson-to-codemeta";
+import { convert } from "../../helpers/convert";
 
 /**
  * Converts a codemeta document to a code.json document.
@@ -20,26 +20,28 @@ import { convert } from "../../helpers/convert"
  * const codejson = await fromCodemetaToCodejson({ name: "my-project", ... })
  * ```
  */
-export async function fromCodemetaToCodejson(input: string | Record<string, unknown>): Promise<Record<string, unknown>> {
-    let source: Record<string, unknown>
-  
-    if (typeof input === "string") {
-      const file = Bun.file(input)
-      try {
-        source = await file.json()
-      } catch (err) {
-        if (err instanceof SyntaxError) {
-          throw new Error(`"${input}" is not valid JSON: ${err.message}`)
-        }
-        throw new Error(`Cannot read file "${input}": ${(err as Error).message}`)
-      }
-    } else {
-      source = input
-    }
-    const result = convert(source, codemetaToCodeJsonMapping)
+export async function fromCodemetaToCodejson(
+  input: string | Record<string, unknown>,
+): Promise<Record<string, unknown>> {
+  let source: Record<string, unknown>;
 
-    return result
+  if (typeof input === "string") {
+    const file = Bun.file(input);
+    try {
+      source = await file.json();
+    } catch (err) {
+      if (err instanceof SyntaxError) {
+        throw new Error(`"${input}" is not valid JSON: ${err.message}`);
+      }
+      throw new Error(`Cannot read file "${input}": ${(err as Error).message}`);
+    }
+  } else {
+    source = input;
   }
+  const result = convert(source, codemetaToCodeJsonMapping);
+
+  return result;
+}
 
 /**
  * Converts a code.json document to a codemeta document.
@@ -60,24 +62,26 @@ export async function fromCodemetaToCodejson(input: string | Record<string, unkn
  * const codemeta = await fromCodejsonToCodemeta({ name: "my-project", ... })
  * ```
  */
-export async function fromCodejsonToCodemeta(input: string | Record<string, unknown>): Promise<Record<string, unknown>> {
-    let source: Record<string, unknown>
-  
-    if (typeof input === "string") {
-      const file = Bun.file(input)
-      try {
-        source = await file.json()
-      } catch (err) {
-        if (err instanceof SyntaxError) {
-          throw new Error(`"${input}" is not valid JSON: ${err.message}`)
-        }
-        throw new Error(`Cannot read file "${input}": ${(err as Error).message}`)
+export async function fromCodejsonToCodemeta(
+  input: string | Record<string, unknown>,
+): Promise<Record<string, unknown>> {
+  let source: Record<string, unknown>;
+
+  if (typeof input === "string") {
+    const file = Bun.file(input);
+    try {
+      source = await file.json();
+    } catch (err) {
+      if (err instanceof SyntaxError) {
+        throw new Error(`"${input}" is not valid JSON: ${err.message}`);
       }
-    } else {
-      source = input
+      throw new Error(`Cannot read file "${input}": ${(err as Error).message}`);
     }
-
-    const result = convert(source, codejsonToCodemetaMapping)
-
-    return result
+  } else {
+    source = input;
   }
+
+  const result = convert(source, codejsonToCodemetaMapping);
+
+  return result;
+}

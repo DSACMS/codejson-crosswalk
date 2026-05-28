@@ -1,1 +1,1 @@
-export { fromCodemetaToCodejson, fromCodejsonToCodemeta } from "./metadata/codemeta/handler"
+export { fromCodemetaToCodejson, fromCodejsonToCodemeta } from "./metadata/codemeta/handler";

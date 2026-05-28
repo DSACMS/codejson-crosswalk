@@ -20,60 +20,60 @@ Examples:
   codejson-crosswalk code.json --to codemeta
   codejson-crosswalk codemeta.json --to codejson --out code.json
   cat code.json | codejson-crosswalk --to codemeta > codemeta.json
-`.trimStart()
+`.trimStart();
 
 // Helper Functions
 interface ParsedArgs {
-  input?: string
-  to?: string
-  out?: string
-  help: boolean
+  input?: string;
+  to?: string;
+  out?: string;
+  help: boolean;
 }
 
 export function parseArgs(argv: string[]): ParsedArgs {
-  const result: ParsedArgs = { help: false }
+  const result: ParsedArgs = { help: false };
 
   for (let i = 0; i < argv.length; i++) {
-    const arg = argv[i]
-    if (arg === undefined) continue
+    const arg = argv[i];
+    if (arg === undefined) continue;
 
     if (arg === "--help" || arg === "-h") {
-      result.help = true
+      result.help = true;
     } else if ((arg === "--to" || arg === "-t") && argv[i + 1]) {
-      result.to = argv[++i]
+      result.to = argv[++i];
     } else if ((arg === "--out" || arg === "-o") && argv[i + 1]) {
-      result.out = argv[++i]
+      result.out = argv[++i];
     } else if (!arg.startsWith("-")) {
-      if (!result.input) result.input = arg
+      if (!result.input) result.input = arg;
     } else {
-      fatal(`Unknown option: ${arg}\n\nRun with --help for usage.`)
+      fatal(`Unknown option: ${arg}\n\nRun with --help for usage.`);
     }
   }
 
-  return result
+  return result;
 }
 
 export function fatal(msg: string): never {
-  process.stderr.write(`Error: ${msg}\n`)
-  process.exit(1)
+  process.stderr.write(`Error: ${msg}\n`);
+  process.exit(1);
 }
 
 export async function readStdin(): Promise<string> {
   // if terminal is interactive then there is nothing to read
-  if (process.stdin.isTTY) return ""
+  if (process.stdin.isTTY) return "";
 
   return new Promise((resolve, reject) => {
-    const chunks: Buffer[] = []
-    process.stdin.on("data", (chunk: Buffer) => chunks.push(chunk))
-    process.stdin.on("end", () => resolve(Buffer.concat(chunks).toString("utf8")))
-    process.stdin.on("error", reject)
-  })
+    const chunks: Buffer[] = [];
+    process.stdin.on("data", (chunk: Buffer) => chunks.push(chunk));
+    process.stdin.on("end", () => resolve(Buffer.concat(chunks).toString("utf8")));
+    process.stdin.on("error", reject);
+  });
 }
 
 export function parseJSON(raw: string, source: string): Record<string, unknown> {
   try {
-    return JSON.parse(raw) as Record<string, unknown>
+    return JSON.parse(raw) as Record<string, unknown>;
   } catch (err) {
-    fatal(`${source} is not valid JSON: ${(err as Error).message}`)
+    fatal(`${source} is not valid JSON: ${(err as Error).message}`);
   }
 }

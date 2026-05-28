@@ -1,0 +1,3 @@
+[test]
+# Fail the test run if coverage drops below 80%
+coverageThreshold = 0.80

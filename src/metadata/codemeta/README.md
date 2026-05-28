@@ -64,30 +64,30 @@ flowchart LR
 
 These fields hold the same data in both formats — only the key name differs. The conversion is lossless in both directions.
 
-| codemeta | code.json |
-|---|---|
-| `name` | `name` |
-| `description` | `description` |
-| `codeRepository` | `repositoryURL` |
-| `downloadUrl` | `downloadURL` |
-| `url` | `homepageURL` |
-| `issueTracker` | `feedbackMechanism` |
+| codemeta         | code.json           |
+| ---------------- | ------------------- |
+| `name`           | `name`              |
+| `description`    | `description`       |
+| `codeRepository` | `repositoryURL`     |
+| `downloadUrl`    | `downloadURL`       |
+| `url`            | `homepageURL`       |
+| `issueTracker`   | `feedbackMechanism` |
 
 ## Transformed mappings
 
 These fields represent the same concept but in different shapes. Each row has both a forward and reverse transform; both must agree for round-trips to be lossless.
 
-| codemeta | code.json | Transform | Notes |
-|---|---|---|---|
-| `version` | `version` | `String` coercion | Forces string output even if codemeta has a number. |
-| `license` | `permissions.licenses` | `transformLicense` ⇄ `transformLicenseToCodemeta` | codemeta is a URL string or CreativeWork; code.json is `[{ name, URL }]`. SPDX identifier is extracted from the URL and validated against the code.json enum (unrecognized identifiers fall through to `"Other"`). **Lossy** in the reverse direction: only the first license entry is kept. |
-| `author` | `contact` | `transformAuthor` ⇄ `transformContactToAuthor` | codemeta `author` may be a Person object or an array of Persons; code.json `contact` is a single `{ name, email }`. The forward direction builds `name` from `givenName`/`familyName` when `name` is absent. The reverse direction splits `name` on whitespace. **Lossy** in the forward direction: co-authors after the first are dropped. |
-| `programmingLanguage` | `languages` | `transformProgrammingLanguage` ⇄ `transformLanguagesToCodemeta` | codemeta accepts a string, an array, or ComputerLanguage objects; code.json requires a string array. Single-element arrays unwrap to a string when going to codemeta. |
-| `keywords` | `tags` | `transformKeywords` ⇄ `transformTagsToKeywords` | codemeta 3.0 accepts an array or a comma-delimited string; code.json requires an array. Both transforms output arrays. |
-| `dateCreated` | `date.created` | `transformDate` ⇄ `stripMidnightUtc` | Plain dates like `2024-01-15` get `T00:00:00Z` appended for code.json. The reverse direction strips that suffix only when it's exact midnight UTC, so real datetimes are preserved. |
-| `dateModified` | `date.lastModified` | `transformDate` ⇄ `stripMidnightUtc` | Same as `dateCreated`. |
-| `dateModified` | `date.metadataLastUpdated` | `transformDate` (forward only) | The same `dateModified` source feeds both `lastModified` and `metadataLastUpdated`. The reverse direction has no entry for `metadataLastUpdated` since `lastModified` already covers `dateModified`. |
-| `developmentStatus` | `status` | `transformDevelopmentStatus` ⇄ `transformStatusToCodemeta` | Maps repostatus.org-style values (`active`, `wip`, `inactive`, ...) to the code.json `status` enum. **Lossy:** `Alpha`, `Beta`, and `Release Candidate` all collapse to `wip` going to codemeta, and `wip` reverses to `Development`. |
+| codemeta              | code.json                  | Transform                                                       | Notes                                                                                                                                                                                                                                                                                                                                       |
+| --------------------- | -------------------------- | --------------------------------------------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| `version`             | `version`                  | `String` coercion                                               | Forces string output even if codemeta has a number.                                                                                                                                                                                                                                                                                         |
+| `license`             | `permissions.licenses`     | `transformLicense` ⇄ `transformLicenseToCodemeta`               | codemeta is a URL string or CreativeWork; code.json is `[{ name, URL }]`. SPDX identifier is extracted from the URL and validated against the code.json enum (unrecognized identifiers fall through to `"Other"`). **Lossy** in the reverse direction: only the first license entry is kept.                                                |
+| `author`              | `contact`                  | `transformAuthor` ⇄ `transformContactToAuthor`                  | codemeta `author` may be a Person object or an array of Persons; code.json `contact` is a single `{ name, email }`. The forward direction builds `name` from `givenName`/`familyName` when `name` is absent. The reverse direction splits `name` on whitespace. **Lossy** in the forward direction: co-authors after the first are dropped. |
+| `programmingLanguage` | `languages`                | `transformProgrammingLanguage` ⇄ `transformLanguagesToCodemeta` | codemeta accepts a string, an array, or ComputerLanguage objects; code.json requires a string array. Single-element arrays unwrap to a string when going to codemeta.                                                                                                                                                                       |
+| `keywords`            | `tags`                     | `transformKeywords` ⇄ `transformTagsToKeywords`                 | codemeta 3.0 accepts an array or a comma-delimited string; code.json requires an array. Both transforms output arrays.                                                                                                                                                                                                                      |
+| `dateCreated`         | `date.created`             | `transformDate` ⇄ `stripMidnightUtc`                            | Plain dates like `2024-01-15` get `T00:00:00Z` appended for code.json. The reverse direction strips that suffix only when it's exact midnight UTC, so real datetimes are preserved.                                                                                                                                                         |
+| `dateModified`        | `date.lastModified`        | `transformDate` ⇄ `stripMidnightUtc`                            | Same as `dateCreated`.                                                                                                                                                                                                                                                                                                                      |
+| `dateModified`        | `date.metadataLastUpdated` | `transformDate` (forward only)                                  | The same `dateModified` source feeds both `lastModified` and `metadataLastUpdated`. The reverse direction has no entry for `metadataLastUpdated` since `lastModified` already covers `dateModified`.                                                                                                                                        |
+| `developmentStatus`   | `status`                   | `transformDevelopmentStatus` ⇄ `transformStatusToCodemeta`      | Maps repostatus.org-style values (`active`, `wip`, `inactive`, ...) to the code.json `status` enum. **Lossy:** `Alpha`, `Beta`, and `Release Candidate` all collapse to `wip` going to codemeta, and `wip` reverses to `Development`.                                                                                                       |
 
 ## Target-only defaults
 
@@ -95,29 +95,29 @@ These fields are required (or strongly encouraged) in the target format but have
 
 ### Written when codemeta is the source (output is code.json)
 
-| code.json field | Default | Reason |
-|---|---|---|
-| `permissions.usageType` | `[]` | Schema requires an array; empty signals "needs review." |
-| `permissions.exemptionText` | `""` | Free-form, may be null. |
-| `organization` | `""` | Free-form. |
-| `repositoryVisibility` | `"public"` | Enum requires `public` or `private`; OSS default is public. |
-| `vcs` | `"git"` | Enum requires one of `git`, `hg`, `svn`, `rcs`, `bzr`, `none`; `git` is overwhelmingly common. |
-| `laborHours` | `0` | Numeric placeholder. |
-| `reuseFrequency` | `{}` | Both `forks` and `clones` are optional sub-properties. |
-| `maintenance` | `"none"` | Enum value indicating no dedicated maintenance staff. |
-| `contractNumber` | `[]` | Empty array. |
-| `SBOM` | `"None"` | Schema description says enter `"None"` if no SBOM exists. |
-| `AIUseCaseID` | `"0"` | Schema description says enter `"0"` if not in the inventory. |
-| `disclaimerURL`, `disclaimerText` | `""` | Free-form. |
-| `relatedCode`, `reusedCode`, `partners` | `[]` | Empty arrays. |
-| `date.metadataLastUpdated` | current ISO datetime | Set at module load time. Used only when `dateModified` is absent from the source. |
+| code.json field                         | Default              | Reason                                                                                         |
+| --------------------------------------- | -------------------- | ---------------------------------------------------------------------------------------------- |
+| `permissions.usageType`                 | `[]`                 | Schema requires an array; empty signals "needs review."                                        |
+| `permissions.exemptionText`             | `""`                 | Free-form, may be null.                                                                        |
+| `organization`                          | `""`                 | Free-form.                                                                                     |
+| `repositoryVisibility`                  | `"public"`           | Enum requires `public` or `private`; OSS default is public.                                    |
+| `vcs`                                   | `"git"`              | Enum requires one of `git`, `hg`, `svn`, `rcs`, `bzr`, `none`; `git` is overwhelmingly common. |
+| `laborHours`                            | `0`                  | Numeric placeholder.                                                                           |
+| `reuseFrequency`                        | `{}`                 | Both `forks` and `clones` are optional sub-properties.                                         |
+| `maintenance`                           | `"none"`             | Enum value indicating no dedicated maintenance staff.                                          |
+| `contractNumber`                        | `[]`                 | Empty array.                                                                                   |
+| `SBOM`                                  | `"None"`             | Schema description says enter `"None"` if no SBOM exists.                                      |
+| `AIUseCaseID`                           | `"0"`                | Schema description says enter `"0"` if not in the inventory.                                   |
+| `disclaimerURL`, `disclaimerText`       | `""`                 | Free-form.                                                                                     |
+| `relatedCode`, `reusedCode`, `partners` | `[]`                 | Empty arrays.                                                                                  |
+| `date.metadataLastUpdated`              | current ISO datetime | Set at module load time. Used only when `dateModified` is absent from the source.              |
 
 ### Written when code.json is the source (output is codemeta)
 
-| codemeta field | Default | Reason |
-|---|---|---|
-| `@context` | `"https://w3id.org/codemeta/3.0"` | JSON-LD context required for codemeta 3.0 validation. |
-| `@type` | `"SoftwareSourceCode"` | The expected type for software metadata. |
+| codemeta field | Default                           | Reason                                                |
+| -------------- | --------------------------------- | ----------------------------------------------------- |
+| `@context`     | `"https://w3id.org/codemeta/3.0"` | JSON-LD context required for codemeta 3.0 validation. |
+| `@type`        | `"SoftwareSourceCode"`            | The expected type for software metadata.              |
 
 ## Source-only fields (lossy — dropped)
 

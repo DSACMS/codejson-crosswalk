@@ -16,11 +16,11 @@ Every entry in a mapping array has this shape:
 
 ```typescript
 type MappingEntry = {
-  source?: string                          // dot-notation path to read from the source object
-  target: string                           // dot-notation path to write to in the target object
-  transform?: (value: unknown) => unknown  // optional function to reshape the value
-  default?: unknown                        // fallback value when source is missing
-}
+  source?: string; // dot-notation path to read from the source object
+  target: string; // dot-notation path to write to in the target object
+  transform?: (value: unknown) => unknown; // optional function to reshape the value
+  default?: unknown; // fallback value when source is missing
+};
 ```
 
 The only required field is `target`, because every entry must write somewhere. Everything else is optional, and which fields are present determines how the engine processes the entry.
@@ -63,10 +63,10 @@ The transform function itself lives in the same file, above the mapping array:
 ```typescript
 function transformLicense(value: unknown): { name: string; URL: string }[] {
   if (typeof value === "string") {
-    return [{ name: extractSpdxId(value), URL: value }]
+    return [{ name: extractSpdxId(value), URL: value }];
   }
   // ... handle other cases
-  return []
+  return [];
 }
 ```
 
@@ -130,29 +130,29 @@ Here is the general structure:
 function transformSomething(value: unknown): TargetType {
   // Step 1: Handle the most common case
   if (typeof value === "string") {
-    return reshapeString(value)
+    return reshapeString(value);
   }
 
   // Step 2: Handle alternative representations
   if (typeof value === "object" && value !== null) {
-    const obj = value as Record<string, unknown>
-    return reshapeObject(obj)
+    const obj = value as Record<string, unknown>;
+    return reshapeObject(obj);
   }
 
   // Step 3: Handle arrays if the source field can be an array
   if (Array.isArray(value)) {
-    return value.map(item => reshapeSingleItem(item))
+    return value.map((item) => reshapeSingleItem(item));
   }
 
   // Step 4: Return a safe fallback if none of the above matched
-  return defaultValue
+  return defaultValue;
 }
 ```
 
 Not every transform needs all four steps. A simple transform like version coercion is a one-liner:
 
 ```typescript
-transform: (v) => String(v)
+transform: (v) => String(v);
 ```
 
 A complex transform like `transformAuthor` needs to handle single objects, arrays, and missing properties. The complexity of the transform should match the complexity of the mismatch between formats. Don't write a full function when an inline arrow function will do, and don't use an inline arrow function when the logic warrants a named function with clear steps.

@@ -12,12 +12,21 @@
   "scripts": {
     "build": "bun build src/index.ts src/cli.ts --outdir dist --target node",
     "docs": "typedoc",
-    "prepublishOnly": "bun run build"
+    "prepublishOnly": "bun run build",
+    "test": "bun test",
+    "coverage": "bun test --coverage",
+    "lint": "eslint src/",
+    "format": "prettier --write src/",
+    "format:check": "prettier --check src/"
   },
   "files": ["dist"],
   "devDependencies": {
     "@types/bun": "latest",
-    "typedoc": "^0.28.19"
+    "eslint": "^10.4.0",
+    "eslint-config-prettier": "^10.1.8",
+    "prettier": "^3.8.3",
+    "typedoc": "^0.28.19",
+    "typescript-eslint": "^8.60.0"
   },
   "peerDependencies": {
     "typescript": "^5"
