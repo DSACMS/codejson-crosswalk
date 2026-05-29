@@ -136,13 +136,26 @@ This project uses TypeScript in strict mode. Style conventions are enforced by t
 4. **Keep mapping files declarative.** Logic belongs in named transform functions, not inline arrow functions longer than one expression.
 5. **Named functions for non-trivial transforms.** If a transform has branching or helper calls, extract it as a named function above the mapping array.
 
+**Linting and formatting:**
+
+```bash
+# Check for lint errors
+bun run lint
+
+# Format source files
+bun run format
+
+# Check formatting without writing (used in CI)
+bun run format:check
+```
+
 **Type checking:**
 
 ```bash
 bun tsc --noEmit
 ```
 
-There is no separate linter configuration at this time. The TypeScript compiler in strict mode acts as the primary static analysis tool.
+All three checks (lint, format, type-check) run in CI and must pass before a PR can be merged.
 
 ### Writing Issues
 
@@ -187,6 +200,23 @@ Key conventions:
 - Prefix the subject with its scope: `codemeta:`, `engine:`, `cli:`, `docs:`, `test:`, `chore:`
 - One logical change per PR; reference the same ticket across multiple PRs if needed
 - Tests must pass (`bun test`) and type checking must succeed (`bun tsc --noEmit`) before requesting review
+
+### Updating the Changelog
+
+Every PR that introduces a user-visible change **must** add an entry to [CHANGELOG.md](CHANGELOG.md) under the `[Unreleased]` section. Use one of the standard Keep a Changelog subsections:
+
+| Subsection | When to use |
+|---|---|
+| `Added` | New features, new spoke formats, new CLI flags |
+| `Changed` | Changes to existing behavior or mapping logic |
+| `Deprecated` | Features that will be removed in a future release |
+| `Removed` | Features removed in this release |
+| `Fixed` | Bug fixes |
+| `Security` | Fixes for security vulnerabilities |
+
+Write entries as short, active-voice bullet points from the perspective of a user of the library or CLI — not as internal implementation notes.
+
+**You do not need to pick a version number.** The [auto-changelog workflow](.github/workflows/auto-changelog.yml) regenerates `CHANGELOG.md` automatically whenever a GitHub Release is created, promoting `[Unreleased]` entries into the versioned section. If your PR contains only internal changes (CI config, test infrastructure, tooling) that have no impact on library consumers, a changelog entry is optional.
 
 ## Reviewing Pull Requests
 
