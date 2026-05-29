@@ -1,16 +1,41 @@
 {
   "name": "codejson-crosswalk",
-  "module": "src/index.ts",
+  "version": "0.1.0",
+  "description": "Bidirectional conversion between code.json and other software metadata formats",
+  "license": "CC0-1.0",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/DSACMS/codejson-crosswalk.git"
+  },
+  "keywords": [
+    "code.json",
+    "codemeta",
+    "metadata",
+    "conversion",
+    "open-source",
+    "federal",
+    "cms",
+    "interoperability"
+  ],
   "type": "module",
-  "main": "./dist/index.js",
+  "main": "./dist/index.cjs",
+  "module": "./dist/index.js",
+  "types": "./dist/index.d.ts",
   "exports": {
-    ".": "./dist/index.js"
+    ".": {
+      "types": "./dist/index.d.ts",
+      "import": "./dist/index.js",
+      "require": "./dist/index.cjs"
+    }
+  },
+  "engines": {
+    "node": ">=18"
   },
   "bin": {
-    "codejson-crosswalk": "./dist/cli.js"
+    "codejson-crosswalk": "dist/cli.js"
   },
   "scripts": {
-    "build": "bun build src/index.ts src/cli.ts --outdir dist --target node",
+    "build": "bun build src/index.ts --outdir dist --target node && bun build src/index.ts --outfile dist/index.cjs --target node --format cjs && bun build src/cli.ts --outdir dist --target node && tsc --project tsconfig.build.json",
     "docs": "typedoc",
     "prepublishOnly": "bun run build",
     "test": "bun test",
@@ -19,7 +44,9 @@
     "format": "prettier --write src/",
     "format:check": "prettier --check src/"
   },
-  "files": ["dist"],
+  "files": [
+    "dist"
+  ],
   "devDependencies": {
     "@types/bun": "latest",
     "eslint": "^10.4.0",
@@ -30,8 +57,5 @@
   },
   "peerDependencies": {
     "typescript": "^5"
-  },
-  "dependencies": {
-    "zod": "^4.3.6"
   }
 }
