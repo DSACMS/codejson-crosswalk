@@ -6,6 +6,9 @@ out
 dist
 docs
 examples/02-batch-convert/outputs
+examples/04-cli-quickstart/out-codemeta.json
+examples/04-cli-quickstart/out-codemeta-short.json
+examples/05-stdin-stdout-pipes/out-*.json
 *.tgz
 
 # code coverage

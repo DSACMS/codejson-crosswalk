@@ -1,0 +1,42 @@
+name: Sync Metadata
+
+# Triggers:
+#   - push to main when code.json changes (keeps codemeta.json in sync automatically)
+#   - workflow_dispatch: run manually from the GitHub Actions tab at any time
+#   - schedule: runs monthly on the 1st at 08:00 UTC as a safety net
+on:
+  push:
+    branches: [main]
+    paths:
+      - "code.json"
+  workflow_dispatch:
+  schedule:
+    - cron: "0 8 1 * *"
+
+jobs:
+  sync-codemeta:
+    name: Convert code.json → codemeta.json
+    runs-on: ubuntu-latest
+    permissions:
+      contents: write
+
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: "20"
+
+      # To pin to a specific version use: npx codejson-crosswalk@0.1.0
+      - name: Convert code.json to codemeta.json
+        run: npx --yes codejson-crosswalk code.json --to codemeta --out codemeta.json
+
+      - name: Validate required fields
+        run: bash validate.sh
+
+      # [skip ci] prevents this commit from triggering another workflow run.
+      - name: Commit updated codemeta.json
+        uses: stefanzweifel/git-auto-commit-action@v5
+        with:
+          commit_message: "chore: sync codemeta.json from code.json [skip ci]"
+          file_pattern: codemeta.json

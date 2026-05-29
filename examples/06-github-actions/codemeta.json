@@ -1,0 +1,28 @@
+{
+  "name": "benefits-eligibility-api",
+  "description": "REST API for determining citizen eligibility for federal benefit programs",
+  "codeRepository": "https://github.com/example-agency/benefits-eligibility-api",
+  "downloadUrl": "",
+  "url": "https://example-agency.gov/api/benefits-eligibility",
+  "version": "4.2.1",
+  "license": "https://spdx.org/licenses/Apache-2.0",
+  "author": {
+    "@type": "Person",
+    "givenName": "Jordan",
+    "familyName": "Lee",
+    "email": "jordan.lee@example-agency.gov"
+  },
+  "programmingLanguage": "Go",
+  "keywords": [
+    "benefits",
+    "eligibility",
+    "api",
+    "government"
+  ],
+  "dateCreated": "2021-04-01",
+  "dateModified": "2025-10-28",
+  "issueTracker": "https://github.com/example-agency/benefits-eligibility-api/issues",
+  "developmentStatus": "active",
+  "@context": "https://w3id.org/codemeta/3.0",
+  "@type": "SoftwareSourceCode"
+}

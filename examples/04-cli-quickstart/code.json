@@ -1,0 +1,35 @@
+{
+  "name": "my-agency-tool",
+  "description": "A tool for processing agency data",
+  "status": "Production",
+  "repositoryURL": "https://github.com/example-agency/my-agency-tool",
+  "homepageURL": "https://example-agency.gov/tools/my-agency-tool",
+  "version": "2.1.0",
+  "permissions": {
+    "licenses": [
+      { "name": "MIT", "URL": "https://spdx.org/licenses/MIT" }
+    ],
+    "usageType": ["openSource"]
+  },
+  "contact": {
+    "name": "Jane Smith",
+    "email": "jane.smith@example-agency.gov"
+  },
+  "languages": ["Python", "TypeScript"],
+  "tags": ["data-processing", "government", "open-source"],
+  "date": {
+    "created": "2024-01-15T00:00:00Z",
+    "lastModified": "2025-11-20T00:00:00Z",
+    "metadataLastUpdated": "2025-11-20T00:00:00Z"
+  },
+  "feedbackMechanism": "https://github.com/example-agency/my-agency-tool/issues",
+  "organization": "Example Agency",
+  "repositoryVisibility": "public",
+  "vcs": "git",
+  "laborHours": 320,
+  "reuseFrequency": {},
+  "maintenance": "internal",
+  "contractNumber": [],
+  "SBOM": "None",
+  "AIUseCaseID": "0"
+}

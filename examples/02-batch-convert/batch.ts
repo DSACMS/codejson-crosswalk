@@ -1,3 +1,5 @@
+// In your own project replace this import with:
+//   import { fromCodejsonToCodemeta } from "codejson-crosswalk"
 import { fromCodejsonToCodemeta } from "../../src/index.ts"
 import { readdirSync, mkdirSync, writeFileSync } from "node:fs"
 import { join, basename } from "node:path"

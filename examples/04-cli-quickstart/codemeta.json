@@ -1,0 +1,30 @@
+{
+  "name": "my-agency-tool",
+  "description": "A tool for processing agency data",
+  "codeRepository": "https://github.com/example-agency/my-agency-tool",
+  "downloadUrl": "",
+  "url": "https://example-agency.gov/tools/my-agency-tool",
+  "version": "2.1.0",
+  "license": "https://spdx.org/licenses/MIT",
+  "author": {
+    "@type": "Person",
+    "givenName": "Jane",
+    "familyName": "Smith",
+    "email": "jane.smith@example-agency.gov"
+  },
+  "programmingLanguage": [
+    "Python",
+    "TypeScript"
+  ],
+  "keywords": [
+    "data-processing",
+    "government",
+    "open-source"
+  ],
+  "dateCreated": "2024-01-15",
+  "dateModified": "2025-11-20",
+  "issueTracker": "https://github.com/example-agency/my-agency-tool/issues",
+  "developmentStatus": "active",
+  "@context": "https://w3id.org/codemeta/3.0",
+  "@type": "SoftwareSourceCode"
+}

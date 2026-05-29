@@ -1,6 +1,9 @@
+// In your own project replace this import with:
+//   import { fromCodemetaToCodejson } from "codejson-crosswalk"
 import { fromCodemetaToCodejson } from "../../src/index.ts"
 
-// Fields that every valid code.json document must have a non-empty value for.
+// Required fields per the code.json v2.0 schema (https://code.gov/agency-compliance/compliance/inventory-code).
+// These five must be non-empty for an entry to be considered valid.
 const REQUIRED_FIELDS: string[] = [
   "name",
   "description",

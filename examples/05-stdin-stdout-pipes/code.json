@@ -1,0 +1,35 @@
+{
+  "name": "data-pipeline-service",
+  "description": "An ETL service for aggregating and normalizing public datasets",
+  "status": "Beta",
+  "repositoryURL": "https://github.com/example-agency/data-pipeline-service",
+  "homepageURL": "https://example-agency.gov/tools/data-pipeline-service",
+  "version": "0.9.0",
+  "permissions": {
+    "licenses": [
+      { "name": "Apache-2.0", "URL": "https://spdx.org/licenses/Apache-2.0" }
+    ],
+    "usageType": ["openSource"]
+  },
+  "contact": {
+    "name": "Alex Torres",
+    "email": "alex.torres@example-agency.gov"
+  },
+  "languages": ["Python", "Go"],
+  "tags": ["etl", "data", "pipeline", "open-data"],
+  "date": {
+    "created": "2023-03-10T00:00:00Z",
+    "lastModified": "2025-08-05T00:00:00Z",
+    "metadataLastUpdated": "2025-08-05T00:00:00Z"
+  },
+  "feedbackMechanism": "https://github.com/example-agency/data-pipeline-service/issues",
+  "organization": "Example Agency",
+  "repositoryVisibility": "public",
+  "vcs": "git",
+  "laborHours": 540,
+  "reuseFrequency": {},
+  "maintenance": "internal",
+  "contractNumber": [],
+  "SBOM": "None",
+  "AIUseCaseID": "0"
+}
