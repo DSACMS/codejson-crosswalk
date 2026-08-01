@@ -1,6 +1,7 @@
 {
   "name": "codejson-crosswalk",
-  "description": "Package that converts code.json to other metadata types",
+  "version": "",
+  "description": "NPM package that bidirectionally converts code.json to other metadata formats",
   "longDescription": "An NPM package that converts code.json to a variety of different metadata types in both directions",
   "status": "Development",
   "permissions": {
@@ -18,8 +19,12 @@
   "repositoryURL": "https://github.com/DSACMS/codejson-crosswalk",
   "repositoryHost": "github.com/DSACMS",
   "repositoryVisibility": "public",
+  "homepageURL": "",
+  "downloadURL": "",
+  "disclaimerURL": "",
+  "disclaimerText": "",
   "vcs": "git",
-  "laborHours": 1477.85,
+  "laborHours": 4349,
   "reuseFrequency": {
     "forks": 0,
     "clones": 0
@@ -34,15 +39,19 @@
   ],
   "softwareType": "library",
   "languages": [
-    "Typescript"
+    "TypeScript",
+    "JavaScript"
   ],
   "maintenance": "internal",
   "contractNumber": [],
   "SBOM": "https://github.com/DSACMS/codejson-crosswalk/network/dependencies",
+  "relatedCode": [],
+  "reusedCode": [],
+  "partners": [],
   "date": {
-    "created": "2026-02-10T20:27:00Z",
-    "lastModified": "2026-02-19T21:33:44Z",
-    "metadataLastUpdated": "2026-02-19T21:33:44Z"
+    "created": "2026-02-10T20:26:58Z",
+    "lastModified": "2026-05-29T16:49:29Z",
+    "metadataLastUpdated": "2026-08-01T02:15:05.511Z"
   },
   "tags": [
     "codejson",
